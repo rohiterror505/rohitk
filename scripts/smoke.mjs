@@ -6,8 +6,7 @@ import { chromium } from "playwright-core";
 import { readPasskey } from "./read-passkey.mjs";
 
 const PASSKEY = readPasskey();
-
-const BASE = "http://localhost:3000";
+const BASE = process.env.BASE_URL ?? "http://localhost:3000";
 const consoleErrors = [];
 let passed = 0;
 let failed = 0;
@@ -199,11 +198,16 @@ try {
     await page.waitForSelector("text=I hope this little surprise made you smile", { timeout: 30000 });
   });
 
-  await step("music can be toggled on and off", async () => {
-    await page.getByRole("button", { name: /Play soft music/ }).click();
+  await step("music begins by itself after her first interaction", async () => {
+    // the passkey click above was her first interaction — audio should already be on
     await page.waitForSelector("[aria-pressed='true']");
-    await page.getByRole("button", { name: /Pause the music/ }).click();
+  });
+
+  await step("music can be muted and unmuted", async () => {
+    await page.getByRole("button", { name: /Mute the music/ }).click();
     await page.waitForSelector("[aria-pressed='false']");
+    await page.getByRole("button", { name: /Unmute the music/ }).click();
+    await page.waitForSelector("[aria-pressed='true']");
   });
 
   await step("finale: replay resets the whole universe", async () => {

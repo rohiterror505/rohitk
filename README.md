@@ -67,8 +67,10 @@ the check is timing-safe on the server.
 
 All sound is **synthesized live** with the Web Audio API (a soft generative
 piano/pad loop, plus tiny chimes, whooshes, and sparkles). No audio files,
-no licensing worries. Music is **off by default** — it only begins when she
-taps the music button, and it can be switched off at any moment.
+no licensing worries. The song **begins by itself** with her very first tap
+or keypress — browsers only require one interaction before sound can start,
+and typing her little secret counts. The small button in the corner lets her
+mute or unmute everything at any time.
 
 ## Accessibility & resilience
 

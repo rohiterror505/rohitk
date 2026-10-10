@@ -263,9 +263,11 @@ export const experience = {
     gold: "#ecd9a0",
   },
 
-  /** Music is always off until she turns it on. */
+  /** Music begins by itself with her very first tap or keypress
+      (browsers require one interaction before sound can start),
+      and the little button lets her mute it at any time. */
   music: {
-    enabledByDefault: false,
+    autoplay: true,
   },
 };
 

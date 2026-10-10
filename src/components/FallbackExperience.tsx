@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { experience } from "@/config/experience";
+import { MusicController } from "@/components/MusicController";
 
 function Section({
   children,
@@ -98,13 +99,21 @@ export default function FallbackExperience() {
   const letter = experience.letters[experience.letterTone] ?? experience.letters.full;
   const garden = experience.scenes.garden;
 
-  if (!unlocked) return <Gate onUnlock={() => setUnlocked(true)} />;
+  if (!unlocked) {
+    return (
+      <>
+        <Gate onUnlock={() => setUnlocked(true)} />
+        <MusicController />
+      </>
+    );
+  }
 
   return (
     <div
       className="fixed inset-0 overflow-y-auto"
       style={{ background: "radial-gradient(120% 90% at 50% 10%, #221a5e 0%, #14103d 45%, #0b0926 100%)" }}
     >
+      <MusicController />
       <Section>
         <h1 className="font-script text-5xl text-cream text-glow sm:text-7xl">
           Happy Birthday, Manvi.
